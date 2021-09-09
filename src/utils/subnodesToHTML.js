@@ -14,15 +14,17 @@ const subnodesToHTML = (subnodes = [], fcolor) => {
 
   return subnodes.map((subnode) => {
     let href = `href="${subnode.url}"`
+    let target = `target="_blank" rel="noopener"`
     let emoji = categoryToIMG(subnode.category)
 
     if (!subnode.url) {
       href = ''
+      target = ''
       emoji = ''
     }
 
     return `<div class="mindmap-subnode-group" ${color}>
-      <a ${href}>${subnode.text || ''} ${emoji}</a>
+      <a ${href} ${target}>${subnode.text || ''} ${emoji}</a>
       <div>${subnodesToHTML(subnode.nodes, color)}</div>
     </div>`
   }).join('')
